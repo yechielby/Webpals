@@ -678,26 +678,26 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.55",
+            "version": "1.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
                 "shasum": ""
             },
             "require": {
-                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
+                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -758,7 +758,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-08-24T11:17:19+00:00"
+            "time": "2018-08-22T07:45:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3005,16 +3005,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.6.7",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "bd3e6616b413ffb894f4af5243d4dadd79c964d8"
+                "reference": "bbdfd8e15f4352c6358e81e3c3e32e89a039da11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/bd3e6616b413ffb894f4af5243d4dadd79c964d8",
-                "reference": "bd3e6616b413ffb894f4af5243d4dadd79c964d8",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/bbdfd8e15f4352c6358e81e3c3e32e89a039da11",
+                "reference": "bbdfd8e15f4352c6358e81e3c3e32e89a039da11",
                 "shasum": ""
             },
             "require": {
@@ -3069,7 +3069,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-18T08:11:06+00:00"
+            "time": "2019-09-18T15:15:30+00:00"
         },
         {
             "name": "facade/ignition-contracts",
