@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+/*
+    Show all exsist route
+    code:
+    $ php artisan route:list 
+*/ 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
