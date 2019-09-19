@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Student;
+use App\Http\Resources\Student\StudentCollection;
 use App\Http\Resources\Student\StudentResource;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::all();
+        //return Student::all();
+        // return StudentResource::collection(Student::all());
+        return StudentCollection::collection(Student::all());
     }
 
     /**
@@ -47,6 +50,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        //return $student;
         return new StudentResource($student);
     }
 
