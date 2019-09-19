@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Grade\GradeResource;
 use App\Model\Grade;
+use App\Model\Student;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
@@ -12,9 +14,11 @@ class GradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Student $student)
     {
-        //
+        // return Grade::all();
+        // return GradeResource::collection(Grade::all());
+        return GradeResource::collection($student->grades);
     }
 
     /**
@@ -44,9 +48,10 @@ class GradeController extends Controller
      * @param  \App\Model\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function show(Grade $grade)
+    public function show(Student $student, Grade $grade)
     {
-        //
+        $_grade = $student->grades->firstWhere('id', $grade->id);
+        return $_grade ?  new GradeResource($_grade): '{}';
     }
 
     /**

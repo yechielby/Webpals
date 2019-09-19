@@ -18,7 +18,8 @@ class StudentController extends Controller
     {
         //return Student::all();
         // return StudentResource::collection(Student::all());
-        return StudentCollection::collection(Student::all());
+        // return StudentCollection::collection(Student::all());
+        return StudentCollection::collection(Student::paginate(5));
     }
 
     /**
