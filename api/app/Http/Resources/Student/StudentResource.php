@@ -16,7 +16,11 @@ class StudentResource extends JsonResource
     {
         return [
             'fName'=> $this->first_name,
-            'lName'=> $this->last_name
+            'lName'=> $this->last_name,
+            'GPA'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1,
+            'href' => [
+                'grades' => route('grades.index', $this->id)
+            ]
         ];
     }
 }
