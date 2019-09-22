@@ -86,9 +86,21 @@ class GradeController extends Controller
      * @param  \App\Model\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grade $grade)
+    public function update(Request $request, Student $student, Grade $grade)
     {
-        //
+        // return $grade;
+        // return $student;
+
+        if(isset($request['examName'])){
+            $request['exam'] = $request->examName;
+            unset($request['examName']);
+        }
+
+        $grade->update($request->all());
+
+        return Response([
+            'data' => new GradeResource($grade)
+        ], Response::HTTP_OK);
     }
 
     /**
