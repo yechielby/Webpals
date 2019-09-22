@@ -119,5 +119,7 @@ class StudentController extends Controller
     {
         // return $student;
         $student->delete();
+
+        return Response(null, Response::HTTP_NO_CONTENT);
     }
 }
