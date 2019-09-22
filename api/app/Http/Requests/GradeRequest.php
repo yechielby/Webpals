@@ -23,9 +23,29 @@ class GradeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'examName' => 'required|max:255',
-            'grade' => 'required|integer|between:0,100',
-        ];
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'examName' => 'required|max:255',
+                    'grade' => 'required|integer|between:0,100',
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'examName' => 'max:255',
+                    'grade' => 'integer|between:0,100',
+                ];
+            }
+            default:break;
+        }
     }
 }

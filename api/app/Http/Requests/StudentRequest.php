@@ -23,9 +23,30 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'fName' => 'required|max:255',
-            'lName' => 'required|max:255',
-        ];
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'fName' => 'required|max:255',
+                    'lName' => 'required|max:255',
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'fName' => 'max:255',
+                    'lName' => 'max:255',
+                ];
+            }
+            default:break;
+        }
+        
     }
 }

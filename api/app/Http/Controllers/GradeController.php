@@ -86,7 +86,7 @@ class GradeController extends Controller
      * @param  \App\Model\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student, Grade $grade)
+    public function update(GradeRequest $request, Student $student, Grade $grade)
     {
         // return $grade;
         // return $student;

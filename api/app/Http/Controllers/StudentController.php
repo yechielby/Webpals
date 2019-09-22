@@ -87,7 +87,7 @@ class StudentController extends Controller
      * @param  \App\Model\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
         // return $request->all();
         // return $student;
