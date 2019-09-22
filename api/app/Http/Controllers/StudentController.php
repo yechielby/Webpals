@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Student;
+use App\Http\Requests\StudentRequest;
 use App\Http\Resources\Student\StudentCollection;
 use App\Http\Resources\Student\StudentResource;
+use App\Model\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index','show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,9 +44,16 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        // return $request->all();
+        $student = new Student;
+        $student->first_name = $request->fName;
+        $student->last_name = $request->lName;
+        $student->save();
+        return Response([
+            'data' => new StudentResource($student)
+        ],201);
     }
 
     /**
