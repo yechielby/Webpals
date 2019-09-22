@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GradeRequest;
 use App\Http\Resources\Grade\GradeResource;
 use App\Model\Grade;
 use App\Model\Student;
 use Illuminate\Http\Request;
+
+use Symfony\Component\HttpFoundation\Response;
 
 class GradeController extends Controller
 {
@@ -37,9 +40,20 @@ class GradeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GradeRequest $request, Student $student)
     {
-        //
+        // return $student;
+        // return $request->all();
+
+        $grade = new Grade;
+        $grade->exam = $request->examName;
+        $grade->grade = $request->grade;
+
+        $student->grades()->save($grade);
+
+        return Response([
+            'data' => new GradeResource($grade)
+        ], Response::HTTP_CREATED);
     }
 
     /**
