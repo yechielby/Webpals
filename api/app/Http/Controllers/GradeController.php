@@ -109,8 +109,11 @@ class GradeController extends Controller
      * @param  \App\Model\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grade $grade)
+    public function destroy(Student $student, Grade $grade)
     {
-        //
+        // return $grade;
+        $grade->delete();
+
+        return Response(null, Response::HTTP_NO_CONTENT);
     }
 }
