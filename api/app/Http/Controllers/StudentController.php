@@ -7,6 +7,7 @@ use App\Http\Resources\Student\StudentCollection;
 use App\Http\Resources\Student\StudentResource;
 use App\Model\Student;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
 {
@@ -53,7 +54,7 @@ class StudentController extends Controller
         $student->save();
         return Response([
             'data' => new StudentResource($student)
-        ],201);
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -88,7 +89,24 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        // return $request->all();
+        // return $student;
+
+        if(isset($request['fName'])){
+            $request['first_name'] = $request->fName;
+            unset($request['fName']);
+        }
+
+        if(isset($request['lName'])){
+            $request['last_name'] = $request->lName;
+            unset($request['lName']);
+        }
+        
+        $student->update($request->all());
+
+        return Response([
+            'data' => new StudentResource($student)
+        ], Response::HTTP_OK);
     }
 
     /**
