@@ -15,9 +15,10 @@ class StudentCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            'fullName'=> $this->first_name .' '. $this->last_name,
-            'GPA'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1,
-            'grades' => route('students.show', $this->id)
+            'id' => $this->id,
+            'fName'=> $this->first_name,
+            'lName'=>  $this->last_name,
+            'gpa'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1
         ];
     }
 }

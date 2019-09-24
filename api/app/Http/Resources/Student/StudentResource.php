@@ -15,9 +15,11 @@ class StudentResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'fName'=> $this->first_name,
             'lName'=> $this->last_name,
-            'GPA'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1,
+            'gpa'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1,
+            'edit' => route('students.show', $this->id),
             'grades' => route('grades.index', $this->id)
         ];
     }
