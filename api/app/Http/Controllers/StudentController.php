@@ -21,11 +21,21 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Student $student)
     {
         //return Student::all();
         // return StudentResource::collection(Student::all());
         // return StudentCollection::collection(Student::all());
+        if ($request->has('fName') & $request->has('lName')) {
+            return StudentCollection::collection(Student::where('first_name','like', '%'.$request->fName.'%')->where('last_name','like', '%'.$request->lName.'%')->get());
+            // return $request->fName;
+        }
+        else if ($request->has('fName')) {
+            return StudentCollection::collection(Student::where('first_name','like', '%'.$request->fName.'%')->get());
+        }
+        else if ($request->has('lName')) {
+            return StudentCollection::collection(Student::where('last_name','like', '%'.$request->lName.'%')->get());
+        }
         return StudentCollection::collection(Student::paginate(5));
     }
 
