@@ -17,9 +17,7 @@ class StudentCollection extends JsonResource
         return [
             'fullName'=> $this->first_name .' '. $this->last_name,
             'GPA'=> ($this->grades->count() > 0) ? round($this->grades->sum('grade')/$this->grades->count(), 2) : -1,
-            'href' => [
-                'grades' => route('students.show', $this->id)
-            ]
+            'grades' => route('students.show', $this->id)
         ];
     }
 }
