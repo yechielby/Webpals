@@ -1,0 +1,64 @@
+<div class="card text-center"*ngIf="grades">
+    <hr>
+    <h3 class="card-header">Student Detauls</h3>
+    <hr>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">First Name</th>
+            <th class="text-center">Last Name</th>
+            <th class="text-center">GPA</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>{{student.id}}</td>
+              <td>{{student.fName}}</td>
+              <td>{{student.lName}}</td>
+              <td>{{student.gpa}}</td>
+            </tr>       
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer" >
+      
+    </div>
+  </div>
+  
+<div class="card text-center" *ngIf="grades">
+    <hr>
+    <h1 class="card-header">Grade List</h1>
+    <hr>
+    <div class="card-body">
+      <table class="table table-striped"  >
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Exam Name</th>
+            <th class="text-center">Grade</th>
+            <!-- <th class="text-center"></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let grade of grades|nameGrades:_examName">
+            <td>{{grade.id}}</td>
+            <td>{{grade.examName}}</td>
+            <td>{{grade.grade}}</td>
+            <!-- <td><a [routerLink]="['/students',grade.id]">all grades</a></td> -->
+          </tr>
+          <tr *ngIf="grades.length > 2">
+              <td><input type="number" class="form-control" disabled></td>
+              <td><input type="text" class="form-control" placeholder="Search by Exam Name" [(ngModel)]="_examName"></td>
+              <td><input type="number" class="form-control" disabled></td>
+              <!-- <td></td> -->
+          </tr>       
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer" >
+      
+    </div>
+  </div>
+  
