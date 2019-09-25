@@ -14,7 +14,10 @@
           <li role="presentation" routerLinkActive="active"><a routerLink="/signup">Register</a></li>
           <li role="presentation" routerLinkActive="active"><a routerLink="/signin">Sing In</a></li>
         </ng-template>
-        <li *ngIf="authService.isAuthenticated()"><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
+        <ng-template [ngIf]="authService.isAuthenticated()">
+          <li><a>hello {{authService.name}}!</a></li>
+          <li class="active"><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
+        </ng-template>
       </ul>
     </div>
   </div>

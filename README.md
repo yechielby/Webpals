@@ -17,7 +17,7 @@ cmder will be refered as console
 - Run `php artisan key:generate` 
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
-- Run php artisan passport:install`
+- Run `php artisan passport:install`
 - Run `php artisan serve`
 
 ##### You can now access to api at localhost:8000 :)
@@ -27,6 +27,8 @@ cmder will be refered as console
 $ composer install
 $ php artisan migrate
 ```
+## Api on Postman 
+[getpostman](https://www.getpostman.com/collections/2398173449717f388aa8)
 
 # Now Run Angular local
 - Open the console and cd `site` is a root directory

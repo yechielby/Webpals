@@ -13,7 +13,11 @@
         <label for="password">Password</label>
         <input class="form-control" type="password" name="password" id="password" ngModel minLength="6" required>
       </div>
-      <div class="alert alert-danger" role="alert" *ngIf="errorMessage !== ''">{{ errorMessage}}</div>
+      <div class="form-group">
+        <label for="confirm_password">confirm Password</label>
+        <input class="form-control" type="password" name="confirm_password" id="confirm_password" ngModel minLength="6" required>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage !== ''" [innerHTML]="errorMessage"></div>
       <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
     </form>
   </div>
