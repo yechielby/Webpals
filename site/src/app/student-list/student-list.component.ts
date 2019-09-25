@@ -13,11 +13,13 @@ export class StudentListComponent implements OnInit {
   @ViewChild('f') searchForm: NgForm;
   sp: StudentPagination;
   students: Student[];
+  islogin: boolean;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.onChangePage(undefined);
+    this.islogin = this.dataService.isLogin();
   }
 
   onChangePage(link: string) {
@@ -41,5 +43,12 @@ export class StudentListComponent implements OnInit {
   }
   onReset() {
     this.onChangePage(undefined);
+  }
+  onDelete(id: number) {
+    this.dataService.deleteStudent(id).subscribe(
+      (response: Student[]) => {
+        this.onChangePage(undefined);
+      }
+    );
   }
 }

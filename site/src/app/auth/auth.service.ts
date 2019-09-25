@@ -19,7 +19,7 @@ export class AuthService {
       (res: {success: {token: string, name: string}}) => {
         this.token = res.success.token;
         this.name = res.success.name;
-        this.router.navigate(['/']);
+        this.router.navigate(['/students']);
       },
       (e) => {
         this.errorMessage = '';
@@ -32,17 +32,13 @@ export class AuthService {
         this.onError.next(this.errorMessage);
       }
     );
-    console.log('signup',name,email,password);
-    // this.router.navigate(['/']);
-    // this.token = 'not-null';
-    // this.onError.next(this.errorMessage);
   }
   signinUser(email: string, password: string) {
     this.http.post('http://localhost:8000/api/login', {email, password}).subscribe(
       (res: {success: {token: string, name: string}}) => {
         this.token = res.success.token;
         this.name = res.success.name;
-        this.router.navigate(['/']);
+        this.router.navigate(['/students']);
       },
       (e) => {
         this.errorMessage = '';
@@ -53,16 +49,13 @@ export class AuthService {
         this.onError.next(this.errorMessage);
       }
     );
-    console.log('signin',email,password);
-    // this.router.navigate(['/']);
-    // this.token = 'not-null';
-    // this.onError.next(this.errorMessage);
   }
   getToken() {
     return this.token;
   }
   logout() {
     this.token = null;
+    this.router.navigate(['/']);
   }
   isAuthenticated(): boolean {
     return this.token != null;

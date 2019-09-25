@@ -38,6 +38,7 @@
             <th class="text-center">ID</th>
             <th class="text-center">Exam Name</th>
             <th class="text-center">Grade</th>
+            <td *ngIf="islogin"></td>
             <!-- <th class="text-center"></th> -->
           </tr>
         </thead>
@@ -46,12 +47,17 @@
             <td>{{grade.id}}</td>
             <td>{{grade.examName}}</td>
             <td>{{grade.grade}}</td>
+            <td *ngIf="islogin">
+              <button class="btn btn-success btn-xs" [disabled]="true">Edit</button> , 
+              <button class="btn btn-danger btn-xs" (click)="onDelete(grade.id)">Delete</button>
+            </td>
             <!-- <td><a [routerLink]="['/students',grade.id]">all grades</a></td> -->
           </tr>
           <tr *ngIf="grades.length > 2">
               <td><input type="number" class="form-control" disabled></td>
               <td><input type="text" class="form-control" placeholder="Search by Exam Name" [(ngModel)]="_examName"></td>
               <td><input type="number" class="form-control" disabled></td>
+              <td *ngIf="islogin"></td>
               <!-- <td></td> -->
           </tr>       
         </tbody>

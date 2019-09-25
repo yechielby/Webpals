@@ -13,6 +13,7 @@ export class GradeListComponent implements OnInit {
   id: number;
   grades: Grade[];
   student: Student;
+  islogin: boolean;
   _examName:string;
 
   constructor(
@@ -22,23 +23,35 @@ export class GradeListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.islogin = this.dataService.isLogin();
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = +params.id;
-          this.dataService.getStudentByID(this.id).subscribe(
-            (response: Student) => {
-              this.student = response;
-
-              this.dataService.getGrades(this.student.grades).subscribe(
-                (res: Grade[]) => {
-                  this.grades = res;
-                }
-              );
-            }
-          );
+          this.getData();
         }
       );
   }
+  getData() {
+    this.dataService.getStudentByID(this.id).subscribe(
+      (response: Student) => {
+        this.student = response;
 
+        this.dataService.getGrades(this.student.grades).subscribe(
+          (res: Grade[]) => {
+            this.grades = res;
+          }
+        );
+      }
+    );
+  }
+  onDelete(id: number) {
+    const url = this.student.grades + '/' + id;
+    console.log(url);
+    this.dataService.deleteGrade(url).subscribe(
+      (response: Student[]) => {
+        this.getData();
+      }
+    );
+  }
 }

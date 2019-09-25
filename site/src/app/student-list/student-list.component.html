@@ -23,6 +23,7 @@
           <th class="text-center">Last Name</th>
           <th class="text-center">GPA</th>
           <th class="text-center">Grades List</th>
+          <th class="text-center" *ngIf="islogin"></th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +33,10 @@
           <td>{{student.lName}}</td>
           <td>{{student.gpa}}</td>
           <td><a [routerLink]="[student.id]">all grades</a></td>
+          <td *ngIf="islogin">
+            <button class="btn btn-success btn-xs" [disabled]="true">Edit</button> , 
+            <button class="btn btn-danger btn-xs" (click)="onDelete(student.id)">Delete</button>
+          </td>
         </tr>      
       </tbody>
     </table>

@@ -15,33 +15,18 @@ export class DataService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  // getHttpOptions() {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json',
-  //       'Access-Control-Allow-Origin' : 'localhost:8000',
-  //       'Access-Control-Allow-Methods' : 'GET, PUT, POST, DELETE, OPTIONS'
-  //       })
-  //     // .set('Content-Type', 'application/json')
-  //     // .append('Accept', 'application/json')
-  //     // .append('Access-Control-Allow-Origin', '*')
-  //     // .append('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')
-  //     // .append('Access-Control-Allow-Headers', 'accept, content-type')
-  //     // .append('X-Requested-With', 'XMLHttpRequest')
+  isLogin() {
+    return this.authService.isAuthenticated();
+  }
 
-
-  //   };
-  //   console.log(httpOptions);
-  //   return httpOptions;
-  // }
   getHttpOptionsAuth() {
     const token = this.authService.getToken();
     const httpOptions = {
-      headers: new HttpHeaders().set('Content-Type', 'application/json'), // .append('Authorization', 'Bearer ' + token),
-      params: new HttpParams().set('auth', token)
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+      .append('Accept', 'application/json')
+      .append('Authorization', 'Bearer ' + token),
+      // params: new HttpParams().set('auth', token)
     };
-    console.log(httpOptions);
     return httpOptions;
   }
 
@@ -75,8 +60,9 @@ export class DataService {
   updateStudent(url: string, fName: string, lName: string): Observable<Student> {
     return this.http.put<Student>(url, {fName, lName}, this.getHttpOptionsAuth());
   }
-  deleteStudent(url: string): Observable<any> {
-    return this.http.delete<Student>(url, this.getHttpOptionsAuth());
+  deleteStudent(id: number): Observable<any> {
+    const url = this.apiURL + 'students/' + id;
+    return this.http.delete(url, this.getHttpOptionsAuth());
   }
 
   /* grades */
