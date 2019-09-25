@@ -13,6 +13,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { GradeListComponent } from './grade-list/grade-list.component';
 import { NameGradesPipe } from './grade-list/name-grades.pipe';
+import { GradeEditComponent } from './grade-list/grade-edit/grade-edit.component';
+import { StudentEditComponent } from './student-list/student-edit/student-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { NameGradesPipe } from './grade-list/name-grades.pipe';
     StudentListComponent,
     GradeListComponent,
     NameGradesPipe,
+    GradeEditComponent,
+    StudentEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+
 <div class="card text-center"*ngIf="grades">
     <hr>
     <h3 class="card-header">Student Detauls</h3>
@@ -26,7 +27,11 @@
       
     </div>
   </div>
-  
+
+<div class="text-left" *ngIf="islogin">
+    <hr>
+    <a class="btn btn-success btn-md" [routerLink]="['grades','new']">Add New Grade</a>
+</div>
 <div class="card text-center" *ngIf="grades">
     <hr>
     <h1 class="card-header">Grade List</h1>
@@ -48,17 +53,15 @@
             <td>{{grade.examName}}</td>
             <td>{{grade.grade}}</td>
             <td *ngIf="islogin">
-              <button class="btn btn-success btn-xs" [disabled]="true">Edit</button> , 
+              <button class="btn btn-success btn-xs" [routerLink]="['grades',grade.id,'edit']">Edit</button> , 
               <button class="btn btn-danger btn-xs" (click)="onDelete(grade.id)">Delete</button>
             </td>
-            <!-- <td><a [routerLink]="['/students',grade.id]">all grades</a></td> -->
           </tr>
           <tr *ngIf="grades.length > 2">
               <td><input type="number" class="form-control" disabled></td>
               <td><input type="text" class="form-control" placeholder="Search by Exam Name" [(ngModel)]="_examName"></td>
               <td><input type="number" class="form-control" disabled></td>
               <td *ngIf="islogin"></td>
-              <!-- <td></td> -->
           </tr>       
         </tbody>
       </table>

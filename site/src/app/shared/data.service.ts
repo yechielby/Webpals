@@ -72,15 +72,25 @@ export class DataService {
     );
   }
   getGrade(url: string): Observable<Grade> {
-    return this.http.get<Grade>(url);
+    return this.http.get<Grade>(url).pipe(
+      map(res => res['data'])
+    );
   }
-  createGrade(url: string, examName: string, grade: number): Observable<Grade> {
+  getGradebyIDS(studentId: number, gradeId: number): Observable<Grade> {
+    const url = this.apiURL + 'students/' + studentId + '/grades/' + gradeId;
+    return this.http.get<Grade>(url).pipe(
+      map(res => res['data'])
+    );
+  }
+  createGrade(studentId: number, examName: string, grade: number): Observable<Grade> {
+    const url = this.apiURL + 'students/' + studentId + '/grades';
     return this.http.post<Grade>(url, {examName, grade}, this.getHttpOptionsAuth());
   }
-  updateGrade(url: string, examName: string, grade: number): Observable<Grade> {
+  updateGrade(studentId: number, gradeId: number, examName: string, grade: number): Observable<Grade> {
+    const url = this.apiURL + 'students/' + studentId + '/grades/' + gradeId;
     return this.http.put<Grade>(url, {examName, grade}, this.getHttpOptionsAuth());
   }
   deleteGrade(url: string): Observable<any> {
-    return this.http.delete<Grade>(url, this.getHttpOptionsAuth());
+    return this.http.delete(url, this.getHttpOptionsAuth());
   }
 }

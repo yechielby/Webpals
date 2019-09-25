@@ -1,3 +1,6 @@
+<div *ngIf="islogin">
+    <button class="btn btn-success btn-md" [routerLink]="['new']">Add New Students</button>
+</div>
 <div class="card text-center">
   <h3 class="card-header">Students List</h3>
   <hr>
@@ -31,10 +34,10 @@
           <td>{{student.id}}</td>
           <td>{{student.fName}}</td>
           <td>{{student.lName}}</td>
-          <td>{{student.gpa}}</td>
+          <td>{{student.gpa>0?student.gpa:""}}</td>
           <td><a [routerLink]="[student.id]">all grades</a></td>
           <td *ngIf="islogin">
-            <button class="btn btn-success btn-xs" [disabled]="true">Edit</button> , 
+            <button class="btn btn-success btn-xs" [routerLink]="[student.id,'edit']" [disabled]="false">Edit</button> , 
             <button class="btn btn-danger btn-xs" (click)="onDelete(student.id)">Delete</button>
           </td>
         </tr>      
